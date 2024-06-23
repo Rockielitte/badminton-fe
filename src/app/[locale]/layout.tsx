@@ -1,36 +1,40 @@
-import '@/styles/global.css';
+import "@/styles/global.css";
 
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 
-import { AppConfig } from '@/utils/AppConfig';
+import { Toaster } from "@/components/ui/toaster";
+import Providers from "@/Contexts/TanstackProvider";
+import { ThemeProvider } from "@/Contexts/theme-provider";
+import { AppConfig } from "@/utils/AppConfig";
 
 export const metadata: Metadata = {
   icons: [
     {
-      rel: 'apple-touch-icon',
-      url: '/apple-touch-icon.png',
+      rel: "apple-touch-icon",
+      url: "/apple-touch-icon.png",
     },
     {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '32x32',
-      url: '/favicon-32x32.png',
+      rel: "icon",
+      type: "image/png",
+      sizes: "32x32",
+      url: "/favicon-32x32.png",
     },
     {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '16x16',
-      url: '/favicon-16x16.png',
+      rel: "icon",
+      type: "image/png",
+      sizes: "16x16",
+      url: "/favicon-16x16.png",
     },
     {
-      rel: 'icon',
-      url: '/favicon.ico',
+      rel: "icon",
+      url: "/favicon.ico",
     },
   ],
 };
-
 export default function RootLayout(props: {
   children: React.ReactNode;
   params: { locale: string };
@@ -40,16 +44,25 @@ export default function RootLayout(props: {
 
   // Using internationalization in Client Components
   const messages = useMessages();
+  // const session = getServerSession(authConfig);
 
   return (
-    <html lang={props.params.locale}>
+    <html
+      lang={props.params.locale}
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+    >
       <body>
         <NextIntlClientProvider
           locale={props.params.locale}
           messages={messages}
         >
-          {props.children}
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <Providers>
+              <div className="mx-auto  ">{props.children}</div>
+            </Providers>
+          </ThemeProvider>
         </NextIntlClientProvider>
+        <Toaster />
       </body>
     </html>
   );

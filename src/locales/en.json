@@ -55,6 +55,10 @@
     "meta_title": "Sign up",
     "meta_description": "Effortlessly create an account through our intuitive sign-up process."
   },
+  "profile": {
+    "meta_title": "Profile",
+    "meta_description": "Effortlessly create an account through our intuitive sign-up process."
+  },
   "Dashboard": {
     "meta_title": "Dashboard",
     "hello_message": "Hello {email}!"
