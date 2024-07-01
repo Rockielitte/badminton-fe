@@ -1,3 +1,5 @@
+"use server";
+
 /* eslint-disable no-underscore-dangle */
 import { mockRequest } from "@/lib/mockRequest";
 import {
@@ -7,8 +9,8 @@ import {
 
 import { fetcher } from "..";
 
-export const getSubscriptionListAPI = async () => {
-  return fetcher(`package-purchase/get-my-purchases`);
+export const getSubscriptionList = async () => {
+  return fetcher("package-purchase/get-my-purchases");
 };
 
 export const postSubscriptionListAPI = async (data: PackageCourtSchemaType) => {

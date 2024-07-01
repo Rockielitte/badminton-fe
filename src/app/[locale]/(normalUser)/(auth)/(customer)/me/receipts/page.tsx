@@ -15,7 +15,7 @@ const Receipt: React.FC<Props> = () => {
     queryFn: async () => getMyBookingReceipt(),
   });
 
-  const bookings = data?.bookingList ?? [];
+  const bookings = data?.data ?? [];
 
   console.log(data);
   if (isLoading) {

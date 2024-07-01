@@ -5,16 +5,17 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
-import { getSubscriptionListAPI } from "@/apiCallers/managerSubscription";
+import { getSubscriptionList } from "@/apiCallers/managerSubscription";
 import type { IPackagePurchase } from "@/interfaces/packagePurchase.interface";
 
 import Tracking from "./Tracking";
 
 const TrackingSubscription = () => {
-  const { data, isLoading } = useQuery({
-    queryKey: ["subscriptions"],
-    queryFn: async () => getSubscriptionListAPI(),
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["subscriptionsManager"],
+    queryFn: async () => getSubscriptionList(),
   });
+  console.log(data);
 
   if (isLoading) {
     return <div>Loading subscriptions...</div>;
